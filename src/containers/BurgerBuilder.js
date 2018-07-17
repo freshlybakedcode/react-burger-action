@@ -54,6 +54,7 @@ export default class BurgerBuilder extends Component {
       newPrice = (newPrice + newIngredients[key] * INGREDIENT_PRICES[key]);
     }
     newPrice += INGREDIENT_PRICES.basePrice; // add in the base price of bun etc
+    newPrice = newPrice.toFixed(2); // Format as currency
     this.setState({
       ingredients: newIngredients,
       price: newPrice
@@ -71,10 +72,13 @@ export default class BurgerBuilder extends Component {
     return (
       <React.Fragment>
         <Modal >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary 
+            ingredients={this.state.ingredients} 
+            price={this.state.price}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
-        <p>Current price: <strong>£{this.state.price.toFixed(2)}</strong></p>
+        <p>Current price: <strong>£{this.state.price}</strong></p>
         <BuildControls 
           disabled={disabledInfo}
           updateIngredientsHandler={this.updateIngredientsHandler}

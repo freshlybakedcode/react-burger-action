@@ -1,10 +1,9 @@
 import React from 'react'
 
 const OrderSummary = (props) => {
-  console.log(`[OrderSummary.js] ${JSON.stringify(props.ingredients)}`);
   let ingredientList = Object.keys(props.ingredients).map(key => {
     return (
-      <li>
+      <li key={key}>
         {key.charAt(0).toUpperCase()}{key.substr(1)} x {props.ingredients[key]}
       </li>
     )
@@ -17,7 +16,7 @@ const OrderSummary = (props) => {
       <ul>
         {ingredientList}
       </ul>
-      <strong>Price: £xx.xx</strong>
+      <strong>Price: £{props.price}</strong>
       <button>Continue?</button>
       <button>Amend order</button>
     </React.Fragment>
