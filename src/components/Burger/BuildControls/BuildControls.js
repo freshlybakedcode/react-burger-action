@@ -21,6 +21,12 @@ const BuildControls = (props) => {
           updateIngredientsHandler={props.updateIngredientsHandler}
         />
       ))}
+      <button 
+        className={classes.OrderButton}
+        disabled={!props.purchasable}
+      >
+        Buy this burger
+      </button>
     </div>
   )
 }

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Burger from '../components/Burger/Burger';
 import BuildControls from '../components/Burger/BuildControls/BuildControls';
+import Modal from '../components/UI/Modal/Modal';
+import OrderSummary from '../components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
+  basePrice: 1.25,
   salad: 0.25,
   bacon: 0.75,
   cheese: 0.5,
@@ -16,7 +19,24 @@ export default class BurgerBuilder extends Component {
       cheese: 0,
       meat: 0
     },
-    price: 0
+    price: 0,
+    purchasable: false
+  }
+
+  componentDidMount() {
+    this.setState({ // Set the base price
+      price: INGREDIENT_PRICES.basePrice
+    })
+  }
+  
+  updatePurchaseState(newIngredients) { // can the burger be purchased?
+    const purchasable = Object.keys(newIngredients).map(ingKey => {
+      return newIngredients[ingKey]}).reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({
+      purchasable
+    });
   }
 
   updateIngredientsHandler = (action, ingredient) => {
@@ -31,12 +51,14 @@ export default class BurgerBuilder extends Component {
       }
     }
     for (let key in newIngredients) {
-      newPrice = newPrice + (newIngredients[key] * INGREDIENT_PRICES[key]);
+      newPrice = (newPrice + newIngredients[key] * INGREDIENT_PRICES[key]);
     }
+    newPrice += INGREDIENT_PRICES.basePrice; // add in the base price of bun etc
     this.setState({
       ingredients: newIngredients,
       price: newPrice
     })
+    this.updatePurchaseState(newIngredients);
   }
   
   render() {
@@ -48,11 +70,15 @@ export default class BurgerBuilder extends Component {
     }
     return (
       <React.Fragment>
+        <Modal >
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
-        <p>Current price: {this.state.price}</p>
+        <p>Current price: <strong>£{this.state.price.toFixed(2)}</strong></p>
         <BuildControls 
           disabled={disabledInfo}
-          updateIngredientsHandler={this.updateIngredientsHandler} 
+          updateIngredientsHandler={this.updateIngredientsHandler}
+          purchasable={this.state.purchasable}
         />
       </React.Fragment>
     )

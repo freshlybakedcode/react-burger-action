@@ -6,7 +6,6 @@ class App extends Component {
   render() {
     return (
       <Layout>
-        <p>passed to Layout from App</p>
         <BurgerBuilder />
       </Layout>
     );
