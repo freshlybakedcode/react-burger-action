@@ -3,9 +3,12 @@ import Layout from './components/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder';
 
 class App extends Component {
+  menuClickHandler = () => {
+    alert('[app.js] menuClickHandler');
+  }
   render() {
     return (
-      <Layout>
+      <Layout menuClickHandler={this.menuClickHandler}>
         <BurgerBuilder />
       </Layout>
     );

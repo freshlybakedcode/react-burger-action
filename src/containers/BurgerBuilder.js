@@ -41,7 +41,6 @@ export default class BurgerBuilder extends Component {
   }
 
   updateIngredientsHandler = (action, ingredient) => {
-    console.log(action, ingredient);
     const newIngredients = {...this.state.ingredients};
     let newPrice = 0;
     if (action === 'add') {

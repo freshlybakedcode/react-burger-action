@@ -7,7 +7,14 @@
   transition: background-color 0.2s linear;
   justify-content: center;
 }
-
 .Button:hover {
   background-color: rgba(100,100,100,0.4);
+}
+
+.Good {
+  border: 1px solid green;
+}
+
+.Bad {
+  border: 1px solid red;
 }

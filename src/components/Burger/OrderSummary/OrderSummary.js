@@ -12,15 +12,17 @@ const OrderSummary = (props) => {
 
   return (
     <React.Fragment>
-      <h3>Your Order</h3>
-      <p>Your delicious burger is ready to order:</p>
-      <ul>
-        {ingredientList}
-      </ul>
-      <strong>Price: £{props.price}</strong>
-      <div style={ {display: 'flex', justifyContent: 'space-between'} }>
-        <Button click={props.test}>Pay £{props.price}</Button>
-        <Button click={props.amendOrder}>Amend order</Button>
+      <span style={ {display: 'flex', alignItems: 'center', flexDirection: 'column'} }>
+        <h3>Your Order</h3>
+        <p style={ {margin: '0'} }>Your delicious burger is ready to order:</p>
+        <ul>
+          {ingredientList}
+        </ul>
+        <strong>Price: £{props.price}</strong>
+      </span>
+      <div style={ {display: 'flex', justifyContent: 'space-between', marginTop: '2em'} }>
+        <Button click={props.amendOrder} classModifier={'Bad'}>Amend order</Button>
+        <Button click={props.test} classModifier={'Good'}>Pay £{props.price}</Button>
       </div>
     </React.Fragment>
   )
