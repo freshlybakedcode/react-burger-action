@@ -7,7 +7,11 @@ import NavigationItems from './NavigationItems/NavigationItems';
 const Toolbar = (props) => {
   return (
     <header className={classes.Toolbar}>
-      <Button classModifier={classes.Button} click={props.menuClickHandler}>MENU</Button>
+      <Button classModifier={classes.Button} click={props.menuClickHandler}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </Button>
       <Logo />
       <NavigationItems />
     </header>

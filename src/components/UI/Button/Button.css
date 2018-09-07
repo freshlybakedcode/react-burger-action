@@ -6,6 +6,8 @@
   cursor: pointer;
   transition: background-color 0.2s linear;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .Button:hover {
   background-color: rgba(100,100,100,0.4);

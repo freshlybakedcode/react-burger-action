@@ -96,7 +96,7 @@ export default class BurgerBuilder extends Component {
           />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
-        <p>Current price: <strong>£{this.state.price}</strong></p>
+        <p style={{textAlign: 'center'}}>Current price: <strong>£{this.state.price}</strong></p>
         <BuildControls 
           disabled={disabledInfo}
           updateIngredientsHandler={this.updateIngredientsHandler}
